@@ -19,6 +19,12 @@ class JavaScriptProvider extends JavaScript implements MinifyInterface
         return $this->put($minified);
     }
 
+    protected function checkExistingFiles()
+    {
+        $this->buildMinifiedFilename();
+        return false;
+    }
+
     /**
        * @return string
        */

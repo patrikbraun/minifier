@@ -7,7 +7,9 @@ use Illuminate\Support\ServiceProvider;
 class MinifierServiceProvider extends MinifyServiceProvider {
 
 
-/**
+
+
+	/**
    * Register the package services.
    *
    * @return void

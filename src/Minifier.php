@@ -1,5 +1,6 @@
 <?php namespace Turkeybone\Minifier;
 
+
 use Devfactory\Minify\Minify;
 use Turkeybone\Minifier\Providers\JavaScriptProvider;
 use Turkeybone\Minifier\Providers\StyleSheetProvider;
@@ -74,17 +75,13 @@ class Minifier extends Minify
     return $this->provider->rawText();
   }
 
-
   /**
    * @param $file
    */
   private function process($file) {
     $this->provider->add($file);
-
-    if($this->minifyForCurrentEnvironment() && $this->provider->make($this->buildPath))
-      {
-        $this->provider->minify();
-      }
+    $this->provider->make($this->buildPath);
+    $this->provider->minify();
 
     $this->fullUrl = false;
   }
