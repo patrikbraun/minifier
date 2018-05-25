@@ -1,5 +1,6 @@
 <?php namespace Turkeybone\Minifier;
 
+use Devfactory\Minify\MinifyServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
