@@ -14,8 +14,7 @@ class StyleSheetProvider extends StyleSheet implements MinifyInterface
     public function minify()
     {
         $minified = new CssMinifier($this->appended);
-
-        $this->minifiedText .= $minified;
+        $this->minifiedText .= $minified->getMinified();
 
         return $this->put($minified->getMinified());
     }

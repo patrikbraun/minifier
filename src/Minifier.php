@@ -68,5 +68,26 @@ class Minifier extends Minify
     return $this->assetDirHelper('js', $dir);
   }
 
+
+  public function getInlineBlock()
+  {
+    return $this->provider->rawText();
+  }
+
+
+  /**
+   * @param $file
+   */
+  private function process($file) {
+    $this->provider->add($file);
+
+    if($this->minifyForCurrentEnvironment() && $this->provider->make($this->buildPath))
+      {
+        $this->provider->minify();
+      }
+
+    $this->fullUrl = false;
+  }
+
 }
 

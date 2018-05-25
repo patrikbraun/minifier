@@ -14,7 +14,7 @@ class JavaScriptProvider extends JavaScript implements MinifyInterface
     public function minify()
     {
         $minified = Minifier::minify($this->appended);
-        $this->minifiedText .= $minified;
+        $this->minifiedText .= $minified->getMinified();
 
         return $this->put($minified);
     }
