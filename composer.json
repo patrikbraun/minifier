@@ -26,5 +26,5 @@
       "Turkeybone\\Minifier\\": "src/"
     }
   },
-  "minimum-stability": "dev"
+  "minimum-stability": "stable"
 }
