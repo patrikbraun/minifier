@@ -24,6 +24,14 @@ class StyleSheetProvider extends StyleSheet implements MinifyInterface
     protected function checkExistingFiles()
     {
         $this->buildMinifiedFilename();
+
+        if (file_exists($this->outputDir . $this->filename) && filesize($this->outputDir . $this->filename) > 0)
+        {
+          $this->minifiedText .= file_get_contents($this->outputDir . $this->filename);
+
+          return true;
+        }
+
         return false;
     }
 

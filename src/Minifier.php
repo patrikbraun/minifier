@@ -8,6 +8,16 @@ use Turkeybone\Minifier\Providers\StyleSheetProvider;
 class Minifier extends Minify
 {
   
+ /**
+   * @var bool
+   */
+  private $fullUrl = false;
+
+  /**
+   * @var bool
+   */
+  private $onlyUrl = false;
+
 
   /**
    * @param $file
@@ -80,10 +90,42 @@ class Minifier extends Minify
    */
   private function process($file) {
     $this->provider->add($file);
-    $this->provider->make($this->buildPath);
-    $this->provider->minify();
+
+    if($this->minifyForCurrentEnvironment() && $this->provider->make($this->buildPath))
+      {
+        $this->provider->minify();
+      }
 
     $this->fullUrl = false;
+  }
+
+/**
+   * @return mixed
+   */
+  protected function render()
+  {
+    $baseUrl = $this->fullUrl ? $this->getBaseUrl() : '';
+    if (!$this->minifyForCurrentEnvironment())
+      {
+        return $this->provider->tags($baseUrl, $this->attributes);
+      }
+
+    if( $this->buildExtension == 'js')
+    {
+        $buildPath =  isset($this->config['js_url_path']) ? $this->config['js_url_path'] : $this->buildPath;
+    }
+    else# if( $this->buildExtension == 'css')
+    {
+        $buildPath =  isset($this->config['css_url_path']) ? $this->config['css_url_path'] : $this->buildPath;        
+    }
+    
+    $filename = $baseUrl . $buildPath  . $this->provider->getFilename();
+
+    if ($this->onlyUrl) {
+      return $filename;
+    }
+
+    return $this->provider->tag($filename, $this->attributes);
   }
 
 }

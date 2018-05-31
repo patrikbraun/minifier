@@ -14,7 +14,7 @@ class JavaScriptProvider extends JavaScript implements MinifyInterface
     public function minify()
     {
         $minified = Minifier::minify($this->appended);
-        $this->minifiedText .= $minified->getMinified();
+        $this->minifiedText .= $minified;
 
         return $this->put($minified);
     }
@@ -22,6 +22,14 @@ class JavaScriptProvider extends JavaScript implements MinifyInterface
     protected function checkExistingFiles()
     {
         $this->buildMinifiedFilename();
+
+        if (file_exists($this->outputDir . $this->filename) && filesize($this->outputDir . $this->filename) > 0)
+        {
+          $this->minifiedText .= file_get_contents($this->outputDir . $this->filename);
+
+          return true;
+        }
+
         return false;
     }
 
@@ -33,4 +41,3 @@ class JavaScriptProvider extends JavaScript implements MinifyInterface
         return "<script>" . $this->minifiedText . "</script>";
       }
 }
-
