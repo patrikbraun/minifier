@@ -4,7 +4,7 @@ use Devfactory\Minify\Providers\JavaScript;
 use Devfactory\Minify\Contracts\MinifyInterface;
 use JShrink\Minifier;
 
-class JavaScriptProvider extends JavaScript implements MinifyInterface
+class JavascriptProvider extends JavaScript implements MinifyInterface
 {
    private $minifiedText;
 

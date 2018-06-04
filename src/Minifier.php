@@ -2,7 +2,7 @@
 
 
 use Devfactory\Minify\Minify;
-use Turkeybone\Minifier\Providers\JavaScriptProvider;
+use Turkeybone\Minifier\Providers\JavascriptProvider;
 use Turkeybone\Minifier\Providers\StyleSheetProvider;
 
 class Minifier extends Minify
@@ -25,7 +25,7 @@ class Minifier extends Minify
    * @return string
    */
   public function javascript($file, $attributes = array()) {
-    $this->provider = new JavaScriptProvider(public_path(), ['hash_salt' => $this->config['hash_salt'], 'disable_mtime' => $this->config['disable_mtime']]);
+    $this->provider = new JavascriptProvider(public_path(), ['hash_salt' => $this->config['hash_salt'], 'disable_mtime' => $this->config['disable_mtime']]);
     $this->buildPath = $this->config['js_build_path'];
     $this->attributes = $attributes;
     $this->buildExtension = 'js';
@@ -71,7 +71,7 @@ class Minifier extends Minify
    * @return string
    */
   public function javascriptDir($dir, $attributes = array()) {
-    $this->provider = new JavaScriptProvider(public_path(), ['hash_salt' => $this->config['hash_salt'], 'disable_mtime' => $this->config['disable_mtime']]);
+    $this->provider = new JavascriptProvider(public_path(), ['hash_salt' => $this->config['hash_salt'], 'disable_mtime' => $this->config['disable_mtime']]);
     $this->buildPath = $this->config['js_build_path'];
     $this->attributes = $attributes;
     $this->buildExtension = 'js';
