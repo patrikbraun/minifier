@@ -19,6 +19,8 @@ class JavaScriptProvider extends JavaScript implements MinifyInterface
         return $this->put($minified);
     }
 
+
+
 /*
   since the original author didnt really write this for subclassing
 */
